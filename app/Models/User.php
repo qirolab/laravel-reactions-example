@@ -6,10 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Qirolab\Laravel\Reactions\Contracts\ReactsInterface;
+use Qirolab\Laravel\Reactions\Traits\Reacts;
 
-class User extends Authenticatable
+class User extends Authenticatable implements ReactsInterface
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Reacts;
 
     /**
      * The attributes that are mass assignable.

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\ReactionsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/posts/{post}', [PostsController::class, 'show'])
+    ->name('posts.show');
+
+Route::post('/posts/{post}/reaction', [ReactionsController::class, 'toggle'])
+    ->middleware('auth');
+
+Route::get('/home', [PostsController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('home');
+
+require __DIR__ . '/auth.php';
